@@ -36,7 +36,7 @@ Getting Started
         import okcoin
   
         partner = your_partner_int_here
-        secret_key = your_secret_key_here
+        secret_key = your_secret_key_str__here
   
         T = okcoin.TradeAPI(partner, secret_key)
   
@@ -62,32 +62,35 @@ Note that all parameter names must be __lowercase__ and have __no spaces__.  The
 3. MD5 hash that string, convert it to hex, make it uppercase then URL encode it and POST to the relevant page (depending on what request you're making).
 
 
-    Example code to get account balance
+        # Calculating signed string to get account balance
     
-    import urllib
-    import urllib2
-    import hashlib
-    import simplejson
+        import urllib
+        import urllib2
+        import hashlib
+        import simplejson
+        
+        # partner is int
+        # secret_key is string
      
-    partner = 1111111111
-    secret_key = 'THISISNOTANACTUALKEYOBVIOUSLY'
-     
-    user_info_url = 'https://www.okcoin.com/api/userinfo.do'
-    sign_string = 'partner=' + str(partner)
-     
-    m = hashlib.md5()
-    m.update(sign_string + secret_key)
-    signed = m.hexdigest().upper()
-     
-    values = {'partner' : partner,
-              'sign' : signed}
-     
-    data = urllib.urlencode(values)
-    req = urllib2.Request(user_info_url, data)
-    response = urllib2.urlopen(req)
-    result = simplejson.load(response)
-     
-    print( result['info']['funds']['free'] )
+        partner = 1111111111
+        secret_key = 'THISISNOTANACTUALKEYOBVIOUSLY'
+         
+        user_info_url = 'https://www.okcoin.com/api/userinfo.do'
+        sign_string = 'partner=' + str(partner)
+         
+        m = hashlib.md5()
+        m.update(sign_string + secret_key)
+        signed = m.hexdigest().upper()
+         
+        values = {'partner' : partner,
+                  'sign' : signed}
+         
+        data = urllib.urlencode(values)
+        req = urllib2.Request(user_info_url, data)
+        response = urllib2.urlopen(req)
+        result = simplejson.load(response)
+         
+        print( result['info']['funds']['free'] )
     
     
 
