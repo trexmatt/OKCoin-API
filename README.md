@@ -16,9 +16,9 @@ Happy trading :)
 Disclaimer
 ==========
 
-While I've used this code myself and believe it to be error free, I cannot guarantee that.  Please read through the code and make changes as you see fit. If you see anything that doesn't seem right, let me know! 
+While I've used this code myself and believe it to be error free, I cannot guarantee nothing will go wrong.  Please read through the code and make changes as you see fit. If you see anything that doesn't seem right, let me know! 
 
-IMPORTANT NOTE: __OKCoin does not use a nonce value!__ This means that if something goes wrong and your program keeps sending the same trade request, OKCoin will keep executing it until you run out of money.  I saw someone had requested they implement a nonce on the support site, so hopefully this happens soon.
+IMPORTANT NOTE: __OKCoin does not use a nonce value!__ This means that if something goes wrong and your program keeps sending the same trade request, OKCoin will keep executing it until you run out of money.  I saw someone had requested they implement a nonce on the support site and hopefully this happens soon.
 
 OKCoin is not affiliated with this project.  Real trading APIs are included.  Use at your own risk.
 
@@ -59,7 +59,7 @@ Note that all parameter names must be __lowercase__ and have __no spaces__.  The
 
 2. Take the string you made above and add your secret key to the end of it with __no spaces__ OR __"&"__
 
-        e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy111111111111111111111111"
+        e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy111111111111111111"
     
 3. MD5 hash that string, convert it to hex, make it uppercase then URL encode it and POST to the relevant page (depending on what request you're making).
 
