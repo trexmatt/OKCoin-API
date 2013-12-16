@@ -11,7 +11,6 @@ If this helps you and you'd like to donate, please send coins to
     BTC 19smwQpihXPeXKihG7RxvSvwMoyyggvw3g
     LTC LfPfo5dn7xSkwrXMgd6ZymPTeQGFJtrcgX
     
-  
 Happy trading :)
 
 Disclaimer
@@ -56,7 +55,7 @@ Note that all parameter names must be _lowercase_ and have _no spaces_.  The exa
 
     e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy"
 
-2. Take the string you made above and add your secret key to the end of it with _no space_ OR _"&"_
+2. Take the string you made above and add your secret key to the end of it with *no spaces* OR *"&"*
 
     e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy111111111111111111111111"
     
