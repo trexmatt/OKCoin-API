@@ -4,7 +4,7 @@ OKCoin-API
 This is a simple Python wrapper around the OKCoin.com public and trading API.
 
 It took me quite a while to figure out how to use the API as all the documentation
-is in Chinese (and in some cases just bad), so I hope this saves someone some time and frustration.
+is in Chinese (and in some cases just bad), so I hope this saves someone some time and frustration.  In case you'd like to write your own code to access the API, I explain the request structure below (creating the signed string).
 
 If this helps you and you'd like to donate, please send coins to
 
