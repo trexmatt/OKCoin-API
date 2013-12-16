@@ -31,7 +31,7 @@ Getting Started
   
 3. Initialize the trade api with your secret key and partner id.  It's probably best to load these from an external file rather than saving them in your trading program.  For getting market data you don't need to do this.
 
-        To get account balance:
+        # Get account balance
   
         import okcoin
   
