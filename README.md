@@ -16,7 +16,7 @@ Happy trading :)
 Disclaimer
 ==========
 
-While I've used this code myself and believe it to be error free I cannot guarantee that.  Please read through the code and make changes as you see fit. If you see anything that doesn't seem right, let me know! One important note is that __OKCoin does not use a nonce value__ (an incrementing integer for each trade)!
+While I've used this code myself and believe it to be error free, I cannot guarantee that.  Please read through the code and make changes as you see fit. If you see anything that doesn't seem right, let me know! One important note is that __OKCoin does not use a nonce value__ (an incrementing integer for each trade)!
 
 OKCoin is not affiliated with this project, use at your own risk.
 
