@@ -16,7 +16,7 @@ Happy trading :)
 Disclaimer
 ==========
 
-While I've used this code myself and believe it to be error free I cannot guarantee that.  Please read through the code and make changes as you see fit. If you see anything that doesn't seem right, let me know! One important note is that _OKCoin does not use a nonce value_ (an incrementing integer for each trade)!
+While I've used this code myself and believe it to be error free I cannot guarantee that.  Please read through the code and make changes as you see fit. If you see anything that doesn't seem right, let me know! One important note is that __OKCoin does not use a nonce value__ (an incrementing integer for each trade)!
 
 OKCoin is not affiliated with this project, use at your own risk.
 
@@ -31,7 +31,7 @@ Getting Started
   
 3. Initialize the trade api with your secret key and partner id.  It's probably best to load these from an external file rather than saving them in your trading program.  For getting market data you don't need to do this.
 
-    # Get account balance
+    ## Get account balance
   
     import okcoin
   
@@ -51,11 +51,11 @@ If you're using the okcoin.py file as is, ignore this section.
 If you'd like to write your own code for the API, I explain the request structure below.  This took a while to figure out as the documentation on the OKCoin website is quite lacking.
 
 1. Take the list of parameters and values you're requesting, sort it alphabetically and then join each with "&"
-Note that all parameter names must be _lowercase_ and have _no spaces_.  The example they show is on the page (http://www.okcoin.com/t-1000097.html) is actually incorrect because of this.
+Note that all parameter names must be __lowercase__ and have __no spaces__.  The example they show is on the page (http://www.okcoin.com/t-1000097.html) is actually incorrect because of this.
 
     e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy"
 
-2. Take the string you made above and add your secret key to the end of it with *no spaces* OR *"&"*
+2. Take the string you made above and add your secret key to the end of it with __no spaces__ OR __"&"__
 
     e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy111111111111111111111111"
     
