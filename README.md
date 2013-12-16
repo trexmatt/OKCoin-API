@@ -27,11 +27,11 @@ Getting Started
 
 2. Next download the okcoin.py file. I haven't included a setup.py as the whole API is quite small.  Only the following standard libraries are needed
 
-    urllib, urllib2, hashlib, simplejson
+     urllib, urllib2, hashlib, simplejson
   
 3. Initialize the trade api with your secret key and partner id.  It's probably best to load these from an external file rather than saving them in your trading program.  For getting market data you don't need to do this.
 
-    ## Get account balance
+    To get account balance:
   
     import okcoin
   
@@ -62,7 +62,7 @@ Note that all parameter names must be __lowercase__ and have __no spaces__.  The
 3. MD5 hash that string, convert it to hex, make it uppercase then URL encode it and POST to the relevant page (depending on what request you're making).
 
 
-    # Example code to get account balance
+    Example code to get account balance
     
     import urllib
     import urllib2
