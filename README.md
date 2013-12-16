@@ -16,9 +16,11 @@ Happy trading :)
 Disclaimer
 ==========
 
-While I've used this code myself and believe it to be error free, I cannot guarantee that.  Please read through the code and make changes as you see fit. If you see anything that doesn't seem right, let me know! One important note is that __OKCoin does not use a nonce value__ (an incrementing integer for each trade)!
+While I've used this code myself and believe it to be error free, I cannot guarantee that.  Please read through the code and make changes as you see fit. If you see anything that doesn't seem right, let me know! 
 
-OKCoin is not affiliated with this project, use at your own risk.
+IMPORTANT NOTE: __OKCoin does not use a nonce value!__ This means that if something goes wrong and your program keeps sending the same trade request, OKCoin will keep executing it until you run out of money.  I saw that someone had requested they implement a nonce on the support site so hopefully this happens soon.
+
+OKCoin is not affiliated with this project.  Real trading APIs are included.  Use at your own risk.
 
 Getting Started
 ==========
