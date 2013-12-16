@@ -48,16 +48,16 @@ Request Structure
 
 If you're using the okcoin.py file as is, ignore this section.
 
-If you'd like to write your own code for the API, I explain the request structure below.  This took a while to figure out as the documentation on the OKCoin website is quite lacking (and Google Translate probably didn't help :D )
+If you'd like to write your own code for the API, I explain the request structure below.  This took a while to figure out as the documentation on the OKCoin website is quite lacking (and Google Translate probably didn't help :D ).
 
 1. Take the list of parameters and values you're requesting, sort it alphabetically and then join each with "&"
 Note that all parameter names must be __lowercase__ and have __no spaces__.  The example they show is on the page (http://www.okcoin.com/t-1000097.html) is actually incorrect because of this.
 
-    e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy"
+        e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy"
 
 2. Take the string you made above and add your secret key to the end of it with __no spaces__ OR __"&"__
 
-    e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy111111111111111111111111"
+        e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy111111111111111111111111"
     
 3. MD5 hash that string, convert it to hex, make it uppercase then URL encode it and POST to the relevant page (depending on what request you're making).
 
