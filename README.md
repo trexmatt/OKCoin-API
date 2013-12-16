@@ -8,7 +8,8 @@ is in Chinese (and in some cases just bad), so I hope this saves someone some ti
 
 If this helps you and you'd like to donate, please send coins to
 
-  19smwQpihXPeXKihG7RxvSvwMoyyggvw3g
+    BTC 19smwQpihXPeXKihG7RxvSvwMoyyggvw3g
+    
   
   
 Happy trading :)
@@ -29,20 +30,20 @@ Getting Started
 
 2) Next download the okcoin.py file. I haven't included a setup.py as the whole API is quite small.  Only the following standard libraries are needed
 
-  urllib, urllib2, hashlib, simplejson
+    urllib, urllib2, hashlib, simplejson
   
 3) Initialize the trade api with your secret key and partner id.  It's probably best to load these from an external file rather than saving them in your trading program.
 
-  # Get account balance
+    # Get account balance
   
-  import okcoin
+    import okcoin
   
-  partner = your_partner_int_here
-  secret_key = your_secret_key_here
+    partner = your_partner_int_here
+    secret_key = your_secret_key_here
   
-  T = okcoin.TradeAPI(partner, secret_key)
+    T = okcoin.TradeAPI(partner, secret_key)
   
-  print( T.getinfo() )
-
+    print( T.getinfo() )
+  
 
   
