@@ -108,6 +108,7 @@ class TradeAPI(object):
         if( not success ):
             print('Error: ' + str(result[u'errorCode']))
             print( self.error_code_meaning(result[u'errorCode']) )
+            return(result)
         else:
             return(result)
 
