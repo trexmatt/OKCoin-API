@@ -9,6 +9,7 @@ is in Chinese (and in some cases just bad), so I hope this saves someone some ti
 If this helps you and you'd like to donate, please send coins to
 
     BTC 19smwQpihXPeXKihG7RxvSvwMoyyggvw3g
+    LTC LfPfo5dn7xSkwrXMgd6ZymPTeQGFJtrcgX
     
   
 Happy trading :)
