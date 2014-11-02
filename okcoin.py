@@ -74,6 +74,10 @@ class MarketData(object):
         else:
             print('Unrecognized symbol: ' + symbol)
 
+    def future_ticker(self,symbol, contract):
+        url = 'https://www.okcoin.com/api/future_ticker.do?symbol='+symbol+'&contractType='+contract
+        return self.get_json(url)
+
 class TradeAPI(MarketData):
     
     def __init__(self, partner, secret):
