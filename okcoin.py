@@ -1,5 +1,6 @@
 import urllib
 import urllib2
+import requests
 import hashlib
 import simplejson
 
@@ -26,9 +27,12 @@ class DepthObject(object):
     
 class MarketData(object):
 
+    def __init__(self):
+        self.http = requests.Session()
+
     def get_json(self, url):
-        response = urllib2.urlopen(url)
-        data = simplejson.load(response)
+        r = self.http.get(url)
+        data = simplejson.loads(r.content)
         return(data)
         
     def ticker(self, symbol):
