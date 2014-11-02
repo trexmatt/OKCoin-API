@@ -1,5 +1,3 @@
-import urllib
-import urllib2
 import requests
 import hashlib
 import simplejson
@@ -79,16 +77,16 @@ class MarketData(object):
 class TradeAPI(object):
     
     def __init__(self, partner, secret):
-        
+        self.http = requests.Session()
         self.partner = partner
         self.secret = secret
 
         # partner is integer, secret is string
 
     def _post(self, params, url):
-        
+
         # params does not include the signed part, we add that
-        
+
         sign_string = ''
         
         for pos,key in enumerate(sorted(params.keys())):
@@ -103,10 +101,8 @@ class TradeAPI(object):
 
         params['sign'] = signed
 
-        data = urllib.urlencode(params)
-        req = urllib2.Request(url, data)
-        response = urllib2.urlopen(req)
-        result = simplejson.load(response)
+        req = self.http.post(url,params=params)
+        result = simplejson.loads(req.content)
 
         success = result[u'result']
         if( not success ):
