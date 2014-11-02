@@ -1,5 +1,4 @@
-import urllib
-import urllib2
+import requests
 import hashlib
 import simplejson
 
@@ -26,65 +25,56 @@ class DepthObject(object):
     
 class MarketData(object):
 
-    def get_json(self, url):
-        response = urllib2.urlopen(url)
-        data = simplejson.load(response)
+    def __init__(self):
+        self.http = requests.Session()
+
+    def get_json(self, url,params):
+        r = self.http.get(url,params=params)
+        data = simplejson.loads(r.content)
         return(data)
         
     def ticker(self, symbol):
-        btc_ticker_url = 'https://www.okcoin.com/api/ticker.do?symbol=btc_cny'
-        ltc_ticker_url = 'https://www.okcoin.com/api/ticker.do?symbol=ltc_cny'
-        if( symbol == 'btc_cny' ):
-            data = self.get_json(btc_ticker_url)
-            return( TickerObject(data) )
-        if( symbol == 'ltc_cny' ):
-            data = self.get_json(ltc_ticker_url)
-            return( TickerObject(data) )
-        if( symbol == 'ltc_btc' ):
-            btc_data = self.get_json(btc_ticker_url)
-            ltc_data = self.get_json(ltc_ticker_url)
-            ltc_btc_bid = round( float(ltc_data['ticker']['buy']) / float(btc_data['ticker']['sell']), 8 )
-            ltc_btc_ask = round( float(ltc_data['ticker']['sell']) / float(btc_data['ticker']['buy']), 8 )
-            data = { 'ticker' : {"sell" : ltc_btc_ask, "buy" : ltc_btc_bid} }
-            return( TickerObject(data) )
-        else:
-            print('Unrecognized symbol: ' + symbol)
+        params = {'symbol': symbol}
+        ticker_url = 'https://www.okcoin.com/api/ticker.do'
+        if symbol == 'btc_usd' or symbol == 'ltc_usd':
+            params['ok'] = 1
+        data = self.get_json(ticker_url,params)
+        return( TickerObject(data) )
 
     def get_depth(self, symbol):
-        btc_depth_url = 'https://www.okcoin.com/api/depth.do?symbol=btc_cny'
-        ltc_depth_url = 'https://www.okcoin.com/api/depth.do?symbol=ltc_cny'
-        if( symbol == 'btc_cny' ):
-            data = self.get_json(btc_depth_url)
-            return( DepthObject(data) )
-        if( symbol == 'ltc_cny' ):
-            data = self.get_json(ltc_depth_url)
-            return( DepthObject(data) )
-        else:
-            print('Unrecognized symbol: ' + symbol)
+        params = {'symbol': symbol}
+        depth_url = 'https://www.okcoin.com/api/depth.do'
+        if symbol == 'btc_usd' or symbol == 'ltc_usd':
+            params['ok'] = 1
+        data = self.get_json(depth_url,params)
+        return( DepthObject(data) )
 
     def get_history(self, symbol):
-        btc_history_url = 'https://www.okcoin.com/api/trades.do?symbol=btc_cny'
-        ltc_history_url = 'https://www.okcoin.com/api/trades.do?symbol=ltc_cny'
-        if( symbol == 'btc_cny' ):
-            return( self.get_json(btc_history_url) )
-        if( symbol == 'ltc_cny' ):
-            return( self.get_json(ltc_history_url) )
-        else:
-            print('Unrecognized symbol: ' + symbol)
+        params = {'symbol': symbol}
+        if symbol == 'btc_usd' or symbol == 'ltc_usd':
+            params['ok'] = 1
+        history_url = 'https://www.okcoin.com/api/trades.do'
+        return( self.get_json(history_url,params) )
 
-class TradeAPI(object):
+    def future_ticker(self,symbol, contract):
+        params = {'symbol': symbol,
+            'contractType': contract}
+        url = 'https://www.okcoin.com/api/future_ticker.do'
+        return self.get_json(url, params)
+
+class TradeAPI(MarketData):
     
     def __init__(self, partner, secret):
-        
+        MarketData.__init__(self)
         self.partner = partner
         self.secret = secret
 
         # partner is integer, secret is string
 
     def _post(self, params, url):
-        
+
         # params does not include the signed part, we add that
-        
+
         sign_string = ''
         
         for pos,key in enumerate(sorted(params.keys())):
@@ -99,10 +89,8 @@ class TradeAPI(object):
 
         params['sign'] = signed
 
-        data = urllib.urlencode(params)
-        req = urllib2.Request(url, data)
-        response = urllib2.urlopen(req)
-        result = simplejson.load(response)
+        req = self.http.post(url,params=params)
+        result = simplejson.loads(req.content)
 
         success = result[u'result']
         if( not success ):
@@ -157,12 +145,25 @@ class TradeAPI(object):
                   10013 : 'This interface only accepts https requests' }
         return( codes[error_code] )
                    
+    def get_future_info(self):
+        params = {'partner' : self.partner}
+        user_info_url = 'https://www.okcoin.com/api/future_userinfo.do'
+        return(self._post(params, user_info_url))
+
+    def get_future_holdings(self, symbol):
+        params = {'partner' : self.partner,
+            'symbol': symbol}
+        holdings_url = 'https://www.okcoin.com/api/future_position.do'
+        return(self._post(params, holdings_url))
+
+    def future_trade(self, symbol, contract, price, amount, type):
+        params = {'partner' : self.partner,
+            'symbol': symbol,
+            'contractType': contract,
+            'price':price,
+            'amount': amount,
+            'type':type,
+            'matchPrice':0}
+        url = 'https://www.okcoin.com/api/future_trade.do'
+        return(self._post(params, url))
                    
-                   
-                   
-                  
-        
-            
-            
-            
-            
