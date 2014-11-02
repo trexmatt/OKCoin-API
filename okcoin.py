@@ -163,7 +163,7 @@ class TradeAPI(MarketData):
                    
     def get_future_info(self):
         params = {'partner' : self.partner}
-        user_info_url = ' https://www.okcoin.com/api/future_userinfo.do'
+        user_info_url = 'https://www.okcoin.com/api/future_userinfo.do'
         return(self._post(params, user_info_url))
 
     def get_future_holdings(self, symbol):
