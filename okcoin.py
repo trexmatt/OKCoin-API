@@ -157,12 +157,25 @@ class TradeAPI(MarketData):
                   10013 : 'This interface only accepts https requests' }
         return( codes[error_code] )
                    
+    def get_future_info(self):
+        params = {'partner' : self.partner}
+        user_info_url = ' https://www.okcoin.com/api/future_userinfo.do'
+        return(self._post(params, user_info_url))
+
+    def get_future_holdings(self, symbol):
+        params = {'partner' : self.partner,
+            'symbol': symbol}
+        holdings_url = 'https://www.okcoin.com/api/future_position.do'
+        return(self._post(params, holdings_url))
+
+    def future_trade(self, symbol, contract, price, amount, type):
+        params = {'partner' : self.partner,
+            'symbol': symbol,
+            'contractType': contract,
+            'price':price,
+            'amount': amount,
+            'type':type,
+            'matchPrice':0}
+        url = 'https://www.okcoin.com/api/future_trade.do'
+        return(self._post(params, url))
                    
-                   
-                   
-                  
-        
-            
-            
-            
-            
