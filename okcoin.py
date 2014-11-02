@@ -74,10 +74,10 @@ class MarketData(object):
         else:
             print('Unrecognized symbol: ' + symbol)
 
-class TradeAPI(object):
+class TradeAPI(MarketData):
     
     def __init__(self, partner, secret):
-        self.http = requests.Session()
+        MarketData.__init__(self)
         self.partner = partner
         self.secret = secret
 
