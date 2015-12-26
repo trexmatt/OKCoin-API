@@ -3,7 +3,7 @@ OKCoin-API
 
 This is a simple Python wrapper around the OKCoin.com public trading API.
 
-OKCoin's documentation is in Mandarin (and in some cases just lacking), so I hope this saves someone some time and frustration.  If you want to write your own code for the API, I explain how to create the signed string you need for requests in the last section.  For reference, the OkCoin trade API page is http://www.okcoin.com/t-1000097.html
+OKCoin's API website documentation is poor, so I hope this saves someone some time and frustration.  If you want to write your own code for the API, I explain how to create the signed string you need for requests in the last section.  For reference, the OkCoin trade API page is http://www.okcoin.com/t-1000097.html
 
 Happy trading :)
 
@@ -41,9 +41,9 @@ Request Structure
 
 If you're using the okcoin.py file as is, ignore this section.
 
-If you'd like to write your own code for the API, I explain the request structure below.  This took a while to figure out as the documentation on the OKCoin website is lacking (and Google Translate probably didn't help).
+If you'd like to write your own code for the API, I explain the request structure below.  The documentation for this step on the OKCoin website is really poor.
 
-1. Take the list of parameters and values you're requesting, sort it alphabetically and then join each with "&"
+1. Take the list of parameters and values you're requesting, sort them alphabetically and join each with "&"
 Note that all parameter names must be __lowercase__ and have __no spaces__.  The example they show is on the page (http://www.okcoin.com/t-1000097.html) is actually incorrect because of this.
 
         e.g. "amount=1.0&partner=2088101568338364&rate=680&symbol=btc_cny&type=buy"
